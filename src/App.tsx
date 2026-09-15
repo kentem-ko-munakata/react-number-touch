@@ -98,6 +98,15 @@ function App() {
     if (clickedCell.value !== clickedCount) {
       return;
     }
+
+    // 最後の数字が押された場合
+    if (clickedCount === boardX * boardY - 1) {
+      if (timerIdRef.current !== null) {
+        clearInterval(timerIdRef.current);
+        timerIdRef.current = null;
+      }
+    }
+
     setboard((currentBoard) =>
       currentBoard.map((cell) => (cell.x === x && cell.y === y ? { ...cell, isSelected: !cell.isSelected } : cell)),
     );
