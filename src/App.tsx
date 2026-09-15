@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import './App.css';
 import { StartTimeButton } from '@/components/StartTimeButton/StartTimeButton';
 import { Board } from './components/Board/Board';
@@ -9,9 +9,27 @@ function App() {
   const timerIdRef = useRef<number | null>(null);
   const boardX = 5;
   const boardY = 5;
-  const [board, setboard] = useState<Cell[]>([]);
 
-  useEffect(() => {}, []);
+  const InitBoard = (boardX: number, boardY: number): Cell[] => {
+    const cells: Cell[] = [];
+
+    let index = 0;
+
+    for (let y = 0; y < boardY; y++) {
+      for (let x = 0; x < boardX; x++) {
+        cells.push({
+          x,
+          y,
+          isSelected: false,
+        });
+
+        index++;
+      }
+    }
+    return cells;
+  };
+
+  const [board, setboard] = useState<Cell[]>(() => InitBoard(boardX, boardY));
 
   const onStartTime = () => {
     // 前回のタイマー停止

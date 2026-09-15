@@ -28,7 +28,9 @@
   cursor: pointer;
 }
 
-.cell.selected {
+.cell.selected,
+.cell.disabled {
   background-color: #ddd;
   box-shadow: none;
+  cursor: default;
 }

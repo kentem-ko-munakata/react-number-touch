@@ -1,6 +1,6 @@
 export interface Cell {
   x: number;
   y: number;
-  value: number;
+  value?: number;
   isSelected: boolean;
 }

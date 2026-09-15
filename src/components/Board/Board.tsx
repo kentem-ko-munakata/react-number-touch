@@ -12,7 +12,7 @@ export function Board({ board, onCellClick }: BoardProps) {
       {board.map((cell) => (
         <div
           key={`${cell.x}-${cell.y}`}
-          className={`cell ${cell.isSelected ? 'selected' : ''}`}
+          className={`cell ${cell.isSelected ? 'selected' : ''} ${cell.value === undefined ? 'disabled' : ''}`}
           onClick={() => onCellClick(cell.x, cell.y)}
         >
           {cell.value}
