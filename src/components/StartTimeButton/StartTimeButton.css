@@ -1,0 +1,22 @@
+.startTimeButton {
+  width: 100%;
+  max-width: 240px;
+  padding: 8px 16px;
+
+  background-color: #f44337;
+  color: #fff;
+
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 4px 0 #c62828;
+
+  cursor: pointer;
+
+  font-family: 'Courier New', sans-serif;
+  font-weight: bold;
+}
+
+.startTimeButton:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
