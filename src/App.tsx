@@ -30,6 +30,7 @@ function App() {
   };
 
   const [board, setboard] = useState<Cell[]>(() => InitBoard(boardX, boardY));
+  const [clickedCount, setClickedCount] = useState(0);
 
   const onStartTime = () => {
     // 前回のタイマー停止
@@ -39,6 +40,7 @@ function App() {
 
     // カウントリセット
     setTime(0);
+    setClickedCount(0);
 
     // 盤面作成
     setboard(createBoard(boardX, boardY));
@@ -86,9 +88,20 @@ function App() {
 
   // セルクリック
   const onCellClick = (x: number, y: number) => {
+    const clickedCell = board.find((cell) => cell.x === x && cell.y === y);
+
+    if (!clickedCell) {
+      return;
+    }
+
+    if (clickedCell.value !== clickedCount) {
+      return;
+    }
     setboard((currentBoard) =>
       currentBoard.map((cell) => (cell.x === x && cell.y === y ? { ...cell, isSelected: !cell.isSelected } : cell)),
     );
+
+    setClickedCount((prev) => prev + 1);
   };
 
   return (
