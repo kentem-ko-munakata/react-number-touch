@@ -15,16 +15,16 @@ function App() {
     // カウントリセット
     setTime(0);
 
-    // 新しいタイマー開始（0.1秒単位）
+    // 新しいタイマー開始（0.01秒単位）
     timerIdRef.current = setInterval(() => {
       setTime((prev) => prev + 1);
-    }, 100);
+    }, 10);
     console.log(`timerIdRef: ${timerIdRef.current}`);
   };
 
   return (
     <div className='app'>
-      <div>{(time / 10).toFixed(1)}</div>
+      <div>{(time / 100).toFixed(2)}</div>
       <StartTimeButton onStartTime={onStartTime} />
     </div>
   );
