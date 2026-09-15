@@ -3,6 +3,7 @@ import './App.css';
 import { StartTimeButton } from '@/components/StartTimeButton/StartTimeButton';
 import { Board } from './components/Board/Board';
 import type { Cell } from './types/cell';
+import { Header } from './components/Header/Header';
 
 function App() {
   const [time, setTime] = useState(0);
@@ -106,7 +107,7 @@ function App() {
 
   return (
     <div className='app'>
-      <div>{(time / 100).toFixed(2)}</div>
+      <Header timer={time} />
       <Board board={board} onCellClick={onCellClick} />
       <StartTimeButton onStartTime={onStartTime} />
     </div>

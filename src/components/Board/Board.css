@@ -30,7 +30,7 @@
 
 .cell.selected,
 .cell.disabled {
-  background-color: #ddd;
+  background-color: #cccccc;
   box-shadow: none;
   cursor: default;
 }
