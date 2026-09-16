@@ -1,23 +1,24 @@
 import type { Cell } from '@/types/cell';
 import './Board.css';
+import { memo } from 'react';
 
 interface BoardProps {
   board: Cell[];
   onCellClick: (x: number, y: number) => void;
 }
 
-export function Board({ board, onCellClick }: BoardProps) {
+export const Board = memo(function Board({ board, onCellClick }: BoardProps) {
   return (
     <div className='board'>
       {board.map((cell) => (
-        <div
+        <button
           key={`${cell.x}-${cell.y}`}
           className={`cell ${cell.isSelected ? 'selected' : ''} ${cell.value === undefined ? 'disabled' : ''}`}
           onClick={() => onCellClick(cell.x, cell.y)}
         >
           {cell.value}
-        </div>
+        </button>
       ))}
     </div>
   );
-}
+});
