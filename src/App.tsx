@@ -4,6 +4,7 @@ import { StartTimeButton } from '@/components/StartTimeButton/StartTimeButton';
 import { Board } from './components/Board/Board';
 import type { Cell } from './types/cell';
 import { Header } from './components/Header/Header';
+import { createBoard, InitBoard } from '@/utils/board';
 
 function App() {
   const [time, setTime] = useState(0);
@@ -16,25 +17,6 @@ function App() {
       clearInterval(timerIdRef.current);
       timerIdRef.current = null;
     }
-  };
-
-  const InitBoard = (boardX: number, boardY: number): Cell[] => {
-    const cells: Cell[] = [];
-
-    let index = 0;
-
-    for (let y = 0; y < boardY; y++) {
-      for (let x = 0; x < boardX; x++) {
-        cells.push({
-          x,
-          y,
-          isSelected: false,
-        });
-
-        index++;
-      }
-    }
-    return cells;
   };
 
   const [board, setboard] = useState<Cell[]>(() => InitBoard(boardX, boardY));
@@ -55,41 +37,6 @@ function App() {
     timerIdRef.current = setInterval(() => {
       setTime((prev) => prev + 1);
     }, 10);
-  };
-
-  // ランダム数字生成
-  const createNumbers = (boardX: number, boardY: number): number[] => {
-    const numbers = Array.from({ length: boardX * boardY }, (_, i) => i);
-
-    for (let i = numbers.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-
-      [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
-    }
-
-    return numbers;
-  };
-
-  // 盤面作成
-  const createBoard = (boardX: number, boardY: number): Cell[] => {
-    const cells: Cell[] = [];
-    const numbers = createNumbers(boardX, boardY);
-
-    let index = 0;
-
-    for (let y = 0; y < boardY; y++) {
-      for (let x = 0; x < boardX; x++) {
-        cells.push({
-          x,
-          y,
-          value: numbers[index],
-          isSelected: false,
-        });
-
-        index++;
-      }
-    }
-    return cells;
   };
 
   // セルクリック
