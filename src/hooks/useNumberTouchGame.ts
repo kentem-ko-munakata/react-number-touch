@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import type { Cell } from '@/types/cell';
 import { createBoard, InitBoard } from '@/utils/board';
 
@@ -15,7 +15,7 @@ export function useNumberTouchGame() {
     }
   };
 
-  const handleStartTime = () => {
+  const handleStartTime = useCallback(() => {
     stopTimer();
 
     setTime(0);
@@ -25,25 +25,28 @@ export function useNumberTouchGame() {
     timerIdRef.current = setInterval(() => {
       setTime((prev) => prev + 1);
     }, 10);
-  };
+  }, []);
 
-  const handleCellClick = (x: number, y: number) => {
-    const clickedCell = board.find((cell) => cell.x === x && cell.y === y);
+  const handleCellClick = useCallback(
+    (x: number, y: number) => {
+      const clickedCell = board.find((cell) => cell.x === x && cell.y === y);
 
-    if (!clickedCell || clickedCell.value !== clickedCount) {
-      return;
-    }
+      if (!clickedCell || clickedCell.value !== clickedCount) {
+        return;
+      }
 
-    if (clickedCount === 24) {
-      stopTimer();
-    }
+      if (clickedCount === 24) {
+        stopTimer();
+      }
 
-    setBoard((currentBoard) =>
-      currentBoard.map((cell) => (cell.x === x && cell.y === y ? { ...cell, isSelected: !cell.isSelected } : cell)),
-    );
+      setBoard((currentBoard) =>
+        currentBoard.map((cell) => (cell.x === x && cell.y === y ? { ...cell, isSelected: !cell.isSelected } : cell)),
+      );
 
-    setClickedCount((prev) => prev + 1);
-  };
+      setClickedCount((prev) => prev + 1);
+    },
+    [board, clickedCount],
+  );
 
   return {
     time,
