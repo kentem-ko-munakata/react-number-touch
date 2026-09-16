@@ -1,9 +1,17 @@
 import './App.css';
+import { StartTimeButton } from '@/components/StartTimeButton/StartTimeButton';
+import { Board } from './components/Board/Board';
+import { Header } from './components/Header/Header';
+import { useNumberTouchGame } from '@/hooks/useNumberTouchGame';
 
 function App() {
+  const { time, board, handleStartTime, handleCellClick } = useNumberTouchGame();
+
   return (
     <div className='app'>
-      <h1>hello world</h1>
+      <Header timer={time} />
+      <Board board={board} onCellClick={handleCellClick} />
+      <StartTimeButton onStartTime={handleStartTime} />
     </div>
   );
 }

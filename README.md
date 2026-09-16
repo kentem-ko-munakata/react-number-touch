@@ -13,6 +13,7 @@ Reactの基礎を学ぶために作成する、フロントエンド研修用の
 ## 参考教材
 
 [JavaScript(React)で数字タッチゲームを作ろう（ドットインストール）](https://dotinstall.com/lessons/numbers_js_v6)
+[sample](https://samples.dotinstall.com/s/numbers_js_v6/51718/MyNumbersGame/index.html)
 
 ## 完成イメージ
 
