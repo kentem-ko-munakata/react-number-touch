@@ -33,7 +33,7 @@ function App() {
   const [board, setboard] = useState<Cell[]>(() => InitBoard(boardX, boardY));
   const [clickedCount, setClickedCount] = useState(0);
 
-  const onStartTime = () => {
+  const handleStartTime = () => {
     // 前回のタイマー停止
     if (timerIdRef.current !== null) {
       clearInterval(timerIdRef.current);
@@ -88,7 +88,7 @@ function App() {
   };
 
   // セルクリック
-  const onCellClick = (x: number, y: number) => {
+  const handleCellClick = (x: number, y: number) => {
     const clickedCell = board.find((cell) => cell.x === x && cell.y === y);
 
     if (!clickedCell) {
@@ -117,8 +117,8 @@ function App() {
   return (
     <div className='app'>
       <Header timer={time} />
-      <Board board={board} onCellClick={onCellClick} />
-      <StartTimeButton onStartTime={onStartTime} />
+      <Board board={board} onCellClick={handleCellClick} />
+      <StartTimeButton onStartTime={handleStartTime} />
     </div>
   );
 }
