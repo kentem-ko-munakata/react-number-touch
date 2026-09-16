@@ -11,6 +11,13 @@ function App() {
   const boardX = 5;
   const boardY = 5;
 
+  const stopTimer = () => {
+    if (timerIdRef.current !== null) {
+      clearInterval(timerIdRef.current);
+      timerIdRef.current = null;
+    }
+  };
+
   const InitBoard = (boardX: number, boardY: number): Cell[] => {
     const cells: Cell[] = [];
 
@@ -35,9 +42,7 @@ function App() {
 
   const handleStartTime = () => {
     // 前回のタイマー停止
-    if (timerIdRef.current !== null) {
-      clearInterval(timerIdRef.current);
-    }
+    stopTimer();
 
     // カウントリセット
     setTime(0);
@@ -101,10 +106,7 @@ function App() {
 
     // 最後の数字が押された場合
     if (clickedCount === boardX * boardY - 1) {
-      if (timerIdRef.current !== null) {
-        clearInterval(timerIdRef.current);
-        timerIdRef.current = null;
-      }
+      stopTimer();
     }
 
     setboard((currentBoard) =>
